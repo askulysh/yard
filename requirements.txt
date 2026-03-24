@@ -1,0 +1,6 @@
+opencv-python
+numpy
+onvif-zeep
+requests
+pyTelegramBotAPI
+ultralytics

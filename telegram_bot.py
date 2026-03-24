@@ -3,10 +3,20 @@ import json
 import os
 
 # ==========================================
-# ENTER YOUR TELEGRAM BOT TOKEN HERE
-# Get it by messaging @BotFather on Telegram
+# LOADING TELEGRAM BOT TOKEN FROM JSON
 # ==========================================
-TELEGRAM_BOT_TOKEN = "8726979105:AAF1BZs1IiqNRVy4hlBn3p-aWc9H6Qoo9VU"
+config_path = "telegram.json"
+if not os.path.exists(config_path):
+    print(f"Error: {config_path} not found. Please create it first.")
+    exit(1)
+
+with open(config_path, "r") as f:
+    config = json.load(f)
+    TELEGRAM_BOT_TOKEN = config.get("token")
+
+if not TELEGRAM_BOT_TOKEN:
+    print(f"Error: 'token' not found in {config_path}.")
+    exit(1)
 
 bot = telebot.TeleBot(TELEGRAM_BOT_TOKEN)
 
